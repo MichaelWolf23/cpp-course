@@ -1,0 +1,126 @@
+=== Среда ===
+
+Вывод g++ --version:
+15.2.0
+
+Команда сборки:
+g++ -std=c++17 -Wall -Wextra -Wpedantic main.cpp -o mission_console
+
+
+=== Проверка 1 ===
+
+Ввод:
+Rover
+80
+20
+3
+
+Ожидание:
+Device: Rover
+Remaining battery: 60%
+Checks passed: 3/3
+Status: ready
+
+Факт:
+Device: Rover
+Remaining battery: 60%
+Checks passed: 3/3
+Status: ready
+
+Совпало: да
+
+
+=== Проверка 2 ===
+
+Ввод:
+Rover
+80
+20
+2
+
+Ожидание:
+Device: Rover
+Remaining battery: 60%
+Checks passed: 2/3
+Status: not ready
+
+Факт:
+Device: Rover
+Remaining battery: 60%
+Checks passed: 2/3
+Status: not ready
+
+Совпало: да
+
+
+=== Проверка 3 ===
+
+Ввод:
+Rover
+40
+20
+3
+
+Ожидание:
+Device: Rover
+Remaining battery: 20%
+Checks passed: 3/3
+Status: not ready
+
+Факт:
+Device: Rover
+Remaining battery: 20%
+Checks passed: 3/3
+Status: not ready
+
+Совпало: да
+
+
+=== Проверка 4 ===
+
+Ввод:
+Rover
+120
+20
+3
+
+Ожидание:
+Input error
+
+Факт:
+Input error
+
+Код возврата: 1
+Совпало: да
+
+
+=== Диагностический эксперимент ===
+
+Измененная строка:
+std::coutt << "Device name : ";
+
+Первая полезная диагностика:
+main.cpp:38:8: error: ‘coutt’ is not a member of ‘std’; did you mean ‘cout’?
+
+Номер строки:
+38
+
+Причина:
+Вместо std::cout по ошибке написано std::coutt.
+
+Как исправили:
+Заменил std::coutt на std::cout.
+
+
+=== Вывод ===
+
+Что оказалось похожим на C#:
+Условия if и логические операторы && и || похожи на C#.
+
+Что оказалось непривычным:
+Непривычными оказались std::cout, std::cin и оператор <<.
+
+Как компилятор помог найти ошибку:
+Компилятор указал строку с ошибкой и предложил заменить coutt на cout.
+Программа была собрана без ошибок и предупреждений.
+Все четыре проверки дали ожидаемый результат.
