@@ -1,0 +1,75 @@
+=== Среда ===
+Вывод g++ --version:
+15.2.0
+Команда сборки:
+g++ -std=c++17 -Wall -Wextra -Wpedantic main.cpp -o energy_console
+
+=== Проверка 1 ===
+Ввод:
+Alpha
+50
+Beta
+30
+Ожидание:
+Before: Alpha 50%, Beta 30%; Copy result: 70%; After: Alpha 50%, Beta 50%.
+Факт:
+Before: Alpha 50%, Beta 30%; Copy result: 70%; After: Alpha 50%, Beta 50%.
+Совпало: да
+
+=== Проверка 2 ===
+Ввод:
+Rover
+80
+Scout
+10
+Ожидание:
+Before: Rover 80%, Scout 10%; Copy result: 100%; After: Rover 80%, Scout 30%.
+Факт:
+Before: Rover 80%, Scout 10%; Copy result: 100%; After: Rover 80%, Scout 30%.
+Совпало: да
+
+=== Проверка 3 ===
+Ввод:
+Tank
+5
+Drone
+90
+Ожидание:
+После бонуса Drone = 110%, поэтому Input error.
+Факт:
+Input error
+Код возврата: 1
+Совпало: да
+
+=== Проверка 4 ===
+Ввод:
+Broken
+120
+Ok
+10
+Ожидание:
+Input error
+Факт:
+Input error
+Код возврата: 1
+Совпало: да
+
+=== Диагностический эксперимент ===
+Что изменили:
+void applyBonusReference(int& battery, int bonus)
+заменили на
+void applyBonusReference(int battery, int bonus)
+
+Итог второго устройства:
+Beta осталось 30%.
+
+Почему заряд не вырос:
+Параметр battery передавался по значению, поэтому функция изменяла только копию.
+
+Как исправили:
+Вернули параметр int& battery.
+
+=== Вывод ===
+Когда писать T: когда нужна копия значения.
+Когда писать T&: когда нужно изменить исходное значение.
+Когда писать const T&: когда нужно читать исходное значение без копирования и без изменения.
