@@ -1,32 +1,25 @@
 #include <iostream>
 #include <string>
 
-int calculateRemainingBattery(int battery, int plannedConsumption)
-{
+int calculateRemainingBattery(int battery, int plannedConsumption) {
   return battery - plannedConsumption;
 }
 
-bool isReadyForMission(int remainingBattery, int successfulChecks, int minimumReserve)
-{
+bool isReadyForMission(int remainingBattery, int successfulChecks, int minimumReserve) {
   const bool batteryRule{remainingBattery >= minimumReserve};
   const bool checksRule{successfulChecks == 3};
   return batteryRule && checksRule;
 }
 
-void printStatus(bool ready)
-{
-  if (ready)
-  {
+void printStatus(bool ready) {
+  if (ready) {
     std::cout << "Status : ready\n";
-  }
-  else
-  {
+  } else {
     std::cout << "Status : not ready\n";
   }
 }
 
-int main()
-{
+int main() {
   const int minimumReserve{25};
 
   std::string deviceName;
@@ -44,8 +37,8 @@ int main()
   std::cout << "Successful checks(0 - 3) : ";
   std::cin >> successfulChecks;
 
-  if (battery < 0 || battery > 100 || plannedConsumption < 0 || successfulChecks < 0 || successfulChecks > 3)
-  {
+  if (battery < 0 || battery > 100 || plannedConsumption < 0 || successfulChecks < 0 ||
+      successfulChecks > 3) {
     std::cout << "Input error\n";
     return 1;
   }
